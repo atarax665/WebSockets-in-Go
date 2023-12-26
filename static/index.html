@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket PubSub Client</title>
+</head>
+<body>
+    <form id="message-form">
+        <label for="action">Action:</label>
+        <input type="text" id="action" name="action" required>
+
+        <label for="topic">Topic:</label>
+        <input type="text" id="topic" name="topic" required>
+
+        <label for="message">Message:</label>
+        <input type="text" id="message" name="message" required>
+
+        <button type="button" onclick="sendMessage()">Send</button>
+    </form>
+    <br>
+    <br>
+    <div id="message-container"></div>
+
+    <script>
+        const socket = new WebSocket('ws://localhost:3000/ws');
+        const messageContainer = document.getElementById('message-container');
+        const messageForm = document.getElementById('message-form');
+
+        // Handle messages received from the server or other clients
+        socket.addEventListener('message', (event) => {
+            const message = event.data;
+            
+            // Update message container
+            updateMessageContainer(message);
+        });
+
+        // Function to update the message container
+        function updateMessageContainer(message) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            messageContainer.appendChild(messageElement);
+        }
+
+        // Function to send a message
+        function sendMessage() {
+            const action = document.getElementById('action').value;
+            const topic = document.getElementById('topic').value;
+            const message = document.getElementById('message').value;
+
+            const payload = {
+                action: action,
+                topic: topic,
+                message: message
+            };
+
+            // Send the payload to the server
+            socket.send(JSON.stringify(payload));
+
+            // Clear input fields
+            document.getElementById('action').value = '';
+            document.getElementById('topic').value = '';
+            document.getElementById('message').value = '';
+        }
+    </script>
+</body>
+</html>
