@@ -24,17 +24,23 @@ Clients are identified by a unique ID generated upon connection.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/atarax665/WebSockets-in-Go.git
+   ```
+   
+2. Checkout to websockets-pubsub branch
+
+   ```bash
+   git checkout websockets-pubsub
    ```
 
-2. Install dependencies:
+3. Install dependencies:
 
    ```bash
    go get -u golang.org/x/net/websocket
    go get -u github.com/satori/go.uuid
    ```
 
-3. Run the server:
+4. Run the server:
 
    ```bash
    go run main.go
