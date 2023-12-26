@@ -71,6 +71,8 @@ By default, the server will run on port 8080. You can change the port in the `ma
 - **Acknowledgment:**
   The server sends a confirmation message back to the sender for each received message.
 
+  ### 2. [A pubsub server using websockets in Golang](https://github.com/atarax665/WebSockets-in-Go/tree/websockets-pubsub)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
